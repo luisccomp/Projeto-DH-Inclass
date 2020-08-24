@@ -1,50 +1,29 @@
 package br.com.mgoficina.model;
 
-public class Cliente {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Cliente extends Pessoa{
 	
-	private String nome;
-	private String cpf;
-	private int idade;
-	private char sexo;
 	
-	public Cliente(String nome, String cpf, int idade, char sexo) {
-		super();
-		this.nome = nome;
-		this.cpf = cpf;
-		this.idade = idade;
-		this.sexo = sexo;
+	private List<Veiculo> veiculos;
+	
+	public Cliente(Long id, String nome, String cpf, int idade, char sexo,List<Veiculo> veiculo) {
+		super(id, nome, cpf, idade, sexo);
+		this.veiculos = new ArrayList<>(veiculos);
 	}
 
-	public String getNome() {
-		return nome;
+	public List<Veiculo> getVeiculos() {
+		return Collections.unmodifiableList(this.veiculos);
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void addVeiculos(Veiculo veiculos) {
+		this.veiculos.add(veiculos);
 	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public int getIdade() {
-		return idade;
-	}
-
-	public void setIdade(int idade) {
-		this.idade = idade;
-	}
-
-	public char getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
+	
+	public void removeVeiculos(Veiculo veiculos) {
+		this.veiculos.remove(veiculos);
 	}
 	
 	

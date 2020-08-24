@@ -29,20 +29,26 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
 	@Override
-	public Cliente findById(Long indice) {
-		return null;
+	public Cliente findClienteById(long id) {
+		Cliente retorno = null;
+		for(Cliente cliente: this.clientes) {
+			if(cliente.getId() == id) {
+				retorno = cliente;
+			}
+		}
+		return retorno;
 	}
 
 	@Override
 	public Cliente findClienteByNome(String nome) {
 		
+		Cliente retorno = null;
 		for(Cliente cliente: this.clientes) {
 			if(cliente.getNome().equals(nome)) {
-				return cliente;
+				retorno = cliente;
 			}
 		}
-		
-		return null;
+		return retorno;
 	}
 
 	@Override
@@ -51,26 +57,32 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
 	@Override
-	public boolean update(Cliente cliente) {
+	public boolean updateCliente(Cliente cliente) {
 		
-		if(this.clientes.contains(cliente)) {
-			
-			int indiceDoObjeto = this.clientes.indexOf(cliente);
-			this.clientes.remove(cliente);
+		boolean retorno = false;
+		int indiceDoObjeto = this.clientes.indexOf(this.findClienteById(cliente.getId()));
+		
+		if(indiceDoObjeto > -1) {
+			this.clientes.remove(this.findClienteById(cliente.getId()));
 			this.clientes.add(indiceDoObjeto, cliente);
-			return true;
-			
-		}else {		
-			
-			return false;
-			
-		}
+			retorno = true;
+		}	
+		
+		return retorno;
 		
 	}
 
-	@Override
-	public boolean delete(Long indice) {
-		return false;
+	public boolean deleteCliente(long id) {
+		boolean retorno = false;
+		int indiceDoObjeto = this.clientes.indexOf(this.findClienteById(id));
+		
+		if(indiceDoObjeto > -1) {
+			this.clientes.remove(this.findClienteById(id));
+			retorno = true;
+		}	
+		
+		return retorno;
+		
 	}
 	
 	
