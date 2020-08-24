@@ -8,10 +8,10 @@ public interface IClienteService {
 
 
 	public Cliente create(Cliente cliente);
-	public Cliente findClienteById(long id);
+	public Cliente findClienteById(Long id);
 	public Cliente findClienteByNome(String nome);
 	public List<Cliente> findAll();
 	public boolean updateCliente(Cliente cliente);
-	public boolean deleteCliente(long id);
+	public boolean deleteCliente(Long id);
 	
 }
