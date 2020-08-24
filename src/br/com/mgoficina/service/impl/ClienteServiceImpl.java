@@ -29,7 +29,7 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
 	@Override
-	public Cliente findClienteById(int indice) {
+	public Cliente findById(Long indice) {
 		return null;
 	}
 
@@ -51,7 +51,7 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
 	@Override
-	public boolean updateCliente(Cliente cliente) {
+	public boolean update(Cliente cliente) {
 		
 		if(this.clientes.contains(cliente)) {
 			
@@ -69,7 +69,7 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
 	@Override
-	public boolean deleteCliente(int indice) {
+	public boolean delete(Long indice) {
 		return false;
 	}
 	
