@@ -11,7 +11,7 @@ public class Cliente extends Pessoa{
 	
 	public Cliente(Long id, String nome, String cpf, int idade, char sexo,List<Veiculo> veiculo) {
 		super(id, nome, cpf, idade, sexo);
-		this.veiculos = new ArrayList<>(veiculos);
+		this.veiculos = new ArrayList<>(veiculo);
 	}
 
 	public List<Veiculo> getVeiculos() {

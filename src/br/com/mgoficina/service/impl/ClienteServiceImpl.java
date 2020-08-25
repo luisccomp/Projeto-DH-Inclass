@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import br.com.mgoficina.exception.DataIntegrityException;
 import br.com.mgoficina.model.Cliente;
 import br.com.mgoficina.service.IClienteService;
 
@@ -16,39 +17,41 @@ public class ClienteServiceImpl implements IClienteService{
 	public ClienteServiceImpl() {
 		clientes = new ArrayList<Cliente>();
 	}
-	public ClienteServiceImpl(List<Cliente> clientes) {
-		this.clientes = new ArrayList<>(clientes);
-	} 
-	
+
 		
 	
 	@Override
-	public Cliente create(Cliente cliente) {
+	public Cliente create(Cliente cliente) throws DataIntegrityException{
+		
+		if(cliente.getIdade()<18) {
+			throw new DataIntegrityException("idade");
+		}
+		
 		this.clientes.add(cliente);
 		return cliente;
 	}
 
 	@Override
 	public Cliente findClienteById(Long id) {
-		Cliente retorno = null;
 		for(Cliente cliente: this.clientes) {
 			if(cliente.getId() == id) {
-				retorno = cliente;
+				return cliente;
 			}
 		}
-		return retorno;
+		return null;
+		
 	}
 
 	@Override
 	public Cliente findClienteByNome(String nome) {
 		
-		Cliente retorno = null;
+		
 		for(Cliente cliente: this.clientes) {
 			if(cliente.getNome().equals(nome)) {
-				retorno = cliente;
+				return  cliente;
 			}
 		}
-		return retorno;
+		return null;
 	}
 
 	@Override
