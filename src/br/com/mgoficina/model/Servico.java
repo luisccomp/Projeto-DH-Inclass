@@ -6,23 +6,20 @@ public class Servico {
 
 	private Long id;
 	
-	private String nomeDoServico;
+	private String nome;
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
-	private double valor;
-	private String metodoPagamento;
 	private Cliente cliente;
+	private Veiculo veiculo;
 
-	public Servico(Long id, String nomeDoServico, LocalDate dataInicio, LocalDate dataFim, double valor, String metodoPagamento,
-			Cliente cliente) {
+	public Servico(Long id, String nome, LocalDate dataInicio, LocalDate dataFim, Cliente cliente, Veiculo veiculo) {
 		super();
 		this.id = id;
-		this.nomeDoServico = nomeDoServico;
+		this.nome = nome;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
-		this.valor = valor;
-		this.metodoPagamento = metodoPagamento;
 		this.cliente = cliente;
+		this.veiculo = veiculo;
 	}
 
 	public Long getId() {
@@ -33,12 +30,12 @@ public class Servico {
 		this.id = id;
 	}
 
-	public String getNomeDoServico() {
-		return nomeDoServico;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeDoServico(String nomeDoServico) {
-		this.nomeDoServico = nomeDoServico;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public LocalDate getDataInicio() {
@@ -57,28 +54,20 @@ public class Servico {
 		this.dataFim = dataFim;
 	}
 
-	public double getValor() {
-		return valor;
-	}
-
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
-
-	public String getMetodoPagamento() {
-		return metodoPagamento;
-	}
-
-	public void setMetodoPagamento(String metodoPagamento) {
-		this.metodoPagamento = metodoPagamento;
-	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
 	}
 	
 }

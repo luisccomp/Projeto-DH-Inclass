@@ -7,11 +7,11 @@ public class Funcionario extends Pessoa {
 	
 	private String cargo;
 	private List<Servico> servicos;
-	
-	public Funcionario(String nome, String cpf, int idade, char sexo, String cargo) {
-		super(nome, cpf, idade, sexo);
+
+	public Funcionario(Long id, String nome, String cpf, int idade, char sexo, String cargo) {
+		super(id, nome, cpf, idade, sexo);
 		this.cargo = cargo;
-		this.servicos = new ArrayList<>();
+		servicos = new ArrayList<>();
 	}
 
 	public String getCargo() {

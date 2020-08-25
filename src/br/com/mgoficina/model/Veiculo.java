@@ -9,10 +9,9 @@ public class Veiculo {
 	private int ano;
 	private String cor;
 	private String chassi;
-	private String tipoDeVeiculo;
+	private String tipo;
 
-	public Veiculo(Long id, String placa, String modelo, int ano, 
-			String cor, String chassi, String tipoDeVeiculo) {
+	public Veiculo(Long id, String placa, String modelo, int ano, String cor, String chassi, String tipo) {
 		super();
 		this.id = id;
 		this.placa = placa;
@@ -20,7 +19,7 @@ public class Veiculo {
 		this.ano = ano;
 		this.cor = cor;
 		this.chassi = chassi;
-		this.tipoDeVeiculo = tipoDeVeiculo;
+		this.tipo = tipo;
 	}
 
 	public Long getId() {
@@ -71,12 +70,12 @@ public class Veiculo {
 		this.chassi = chassi;
 	}
 
-	public String getTipoDeVeiculo() {
-		return tipoDeVeiculo;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setTipoDeVeiculo(String tipoDeVeiculo) {
-		this.tipoDeVeiculo = tipoDeVeiculo;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 }
