@@ -3,6 +3,7 @@ package br.com.mgoficina.service.impl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import br.com.mgoficina.exception.DataIntegrityException;
 import br.com.mgoficina.model.Cliente;
@@ -85,7 +86,8 @@ public class ClienteServiceImpl implements IClienteService{
 			retorno = true;
 		}	
 		
-		return retorno;
+		return retorno;	
+		
 		
 	}
 	
