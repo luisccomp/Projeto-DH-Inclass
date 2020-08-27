@@ -1,17 +1,12 @@
 package br.com.mgoficina.service;
 
-import java.util.List;
+import java.util.Set;
 
-import br.com.mgoficina.exception.DataIntegrityException;
 import br.com.mgoficina.model.Cliente;
 
-public interface IClienteService {
+public interface IClienteService extends IService<Cliente> {
 
-	public Cliente create(Cliente cliente) throws DataIntegrityException;
-	public Cliente findClienteById(Long id);
-	public Cliente findClienteByNome(String nome);
-	public List<Cliente> findAll();
-	public boolean updateCliente(Cliente cliente);
-	public boolean deleteCliente(Long id);
+	public Cliente findByNome(String nome);
+	public Set<Cliente> findIdadeMaior(int idade);
 	
 }
