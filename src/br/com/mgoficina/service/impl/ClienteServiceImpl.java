@@ -2,7 +2,11 @@ package br.com.mgoficina.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import br.com.mgoficina.model.Cliente;
 import br.com.mgoficina.service.IClienteService;
@@ -29,7 +33,7 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
 	@Override
-	public Cliente findClienteById(Long id) {
+	public Cliente findById(Long id) {
 		Cliente retorno = null;
 		for(Cliente cliente: this.clientes) {
 			if(cliente.getId() == id) {
@@ -40,15 +44,14 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
 	@Override
-	public Cliente findClienteByNome(String nome) {
+	public Cliente findByNome(String nome) {
+
 		
-		Cliente retorno = null;
-		for(Cliente cliente: this.clientes) {
-			if(cliente.getNome().equals(nome)) {
-				retorno = cliente;
-			}
-		}
-		return retorno;
+		return this.clientes.stream()
+			.filter(cliente -> cliente.getNome() == nome)
+			.findAny()
+			.orElseThrow(() -> new RuntimeException("Objeto n econtrado"));
+					
 	}
 
 	@Override
@@ -57,13 +60,13 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
 	@Override
-	public boolean updateCliente(Cliente cliente) {
+	public boolean update(Cliente cliente) {
 		
 		boolean retorno = false;
-		int indiceDoObjeto = this.clientes.indexOf(this.findClienteById(cliente.getId()));
+		int indiceDoObjeto = this.clientes.indexOf(this.findById(cliente.getId()));
 		
 		if(indiceDoObjeto > -1) {
-			this.clientes.remove(this.findClienteById(cliente.getId()));
+			this.clientes.remove(this.findById(cliente.getId()));
 			this.clientes.add(indiceDoObjeto, cliente);
 			retorno = true;
 		}	
@@ -74,12 +77,12 @@ public class ClienteServiceImpl implements IClienteService{
 
 
 	@Override
-	public boolean deleteCliente(Long id) {
+	public boolean delete(Long id) {
 		boolean retorno = false;
-		int indiceDoObjeto = this.clientes.indexOf(this.findClienteById(id));
+		int indiceDoObjeto = this.clientes.indexOf(this.findById(id));
 		
 		if(indiceDoObjeto > -1) {
-			this.clientes.remove(this.findClienteById(id));
+			this.clientes.remove(this.findById(id));
 			retorno = true;
 		}	
 		
@@ -87,6 +90,36 @@ public class ClienteServiceImpl implements IClienteService{
 		
 	}
 	
+//	@Override
+//	public Set<Cliente> findIdadeMaior(int idade){
+//		Set<Cliente> retorno = new HashSet<>();
+//		
+//		for(int i =0; i < this.clientes.size(); i++) {
+//			if(clientes.get(i).getIdade() >= idade) {
+//				retorno.add(clientes.get(i));
+//			}
+//		}
+//		
+//	
+//		return retorno;
+//		
+//	}
+	@Override
+	public Set<Cliente> findIdadeMaior(int idade){
 	
+		 return  this.clientes.stream()
+				.filter(cliente -> cliente.getIdade() >= idade)
+				.collect(Collectors.toSet());
+		
+	}
+	
+	
+	public int totalCarros(){
+		
+		 return  this.clientes.stream()
+				 .mapToInt(cliente -> cliente.getVeiculos().size())
+				 .sum();
+		
+	}
 	
 }

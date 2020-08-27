@@ -1,6 +1,7 @@
 package br.com.mgoficina.model;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class OrdemServico {
@@ -8,12 +9,41 @@ public class OrdemServico {
 	private Long id;
 	private Set<Funcionario> funcionarios = new HashSet<>();
 	private Cliente cliente;
-	private Set<Servico> servicos = new HashSet<>();
+	private Set<ServicoOrdemServico> servicos = new HashSet<>();
 	public Long getId() {
 		return id;
 	}
+	
+	public OrdemServico() {
+	}
+	public OrdemServico(Long id) {
+		this.id = id;
+	}
+
+
+
+	public double getValorTotal() {
+		double valorTotal = 0;
+		
+		Iterator<ServicoOrdemServico> iterator = servicos.iterator();
+		
+		while(iterator.hasNext()) {
+			ServicoOrdemServico servico = iterator.next();
+			valorTotal += servico.getValor()*servico.getQuantidade();
+		}
+		
+		return valorTotal;
+	}
+	
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public OrdemServico addServico(ServicoOrdemServico servico) {
+	
+		this.servicos.add(servico);
+		
+		return this;
 	}
 	public Set<Funcionario> getFuncionarios() {
 		return funcionarios;
@@ -27,10 +57,10 @@ public class OrdemServico {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public Set<Servico> getServicos() {
+	public Set<ServicoOrdemServico> getServicos() {
 		return servicos;
 	}
-	public void setServicos(Set<Servico> servicos) {
+	public void setServicos(Set<ServicoOrdemServico> servicos) {
 		this.servicos = servicos;
 	}
 	@Override

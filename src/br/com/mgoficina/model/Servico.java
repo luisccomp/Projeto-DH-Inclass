@@ -5,8 +5,14 @@ public class Servico {
 	private Long id;
 	private String nome;
 	private String descricao;
-	private int quantidade;
-	private int valor;
+
+	
+	
+	public Servico(Long id, String nome, String descricao) {
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -25,18 +31,7 @@ public class Servico {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public int getQuantidade() {
-		return quantidade;
-	}
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
-	public int getValor() {
-		return valor;
-	}
-	public void setValor(int valor) {
-		this.valor = valor;
-	}
+
 	
 	@Override
 	public int hashCode() {
