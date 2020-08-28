@@ -1,8 +1,6 @@
 package br.com.mgoficina.model;
 
-public class Veiculo {
-
-	private Long id;
+public class Veiculo extends ModelBase {
 	
 	private String placa;
 	private String modelo;
@@ -11,23 +9,18 @@ public class Veiculo {
 	private String chassi;
 	private String tipo;
 
-	public Veiculo(Long id, String placa, String modelo, int ano, String cor, String chassi, String tipo) {
+	public Veiculo() {
 		super();
-		this.id = id;
+	}
+
+	public Veiculo(Long id, String placa, String modelo, int ano, String cor, String chassi, String tipo) {
+		super(id);
 		this.placa = placa;
 		this.modelo = modelo;
 		this.ano = ano;
 		this.cor = cor;
 		this.chassi = chassi;
 		this.tipo = tipo;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getPlaca() {

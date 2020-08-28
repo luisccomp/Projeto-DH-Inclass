@@ -2,15 +2,12 @@ package br.com.mgoficina.service;
 
 import java.util.List;
 
+import br.com.mgoficina.exception.ObjectNotFoundException;
 import br.com.mgoficina.model.Cliente;
 
-public interface IClienteService {
-
-	public Cliente create(Cliente cliente);
-	public Cliente findClienteById(Long id);
-	public Cliente findClienteByNome(String nome);
-	public List<Cliente> findAll();
-	public boolean updateCliente(Cliente cliente);
-	public boolean deleteCliente(Long id);
+public interface IClienteService extends IService<Cliente, Long> {
+	
+	List<Cliente> findByNome(String nome);
+	Cliente findByCpf(String cpf) throws ObjectNotFoundException;
 	
 }
