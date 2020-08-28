@@ -72,6 +72,17 @@ public class Main {
 			case 3:
 				clienteManager.cadastrarCliente(reader);
 				break;
+			case 4:
+				clienteManager.atualizarCliente(reader);
+				break;
+			case 5:
+				clienteManager.deletarCliente(reader);
+				break;
+			case 6:
+				break;
+			case 7:
+				veiculoManager.adicionarVeiculo(reader);
+				break;
 			case 0:
 				run = false;
 				break;

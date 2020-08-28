@@ -77,15 +77,69 @@ public class ClienteManager {
 		try {
 			Cliente cliente = service.findByCpf(cpf);
 			
-			System.out.println("Nome: " + cliente.getNome());
-			System.out.println("CPF: " + cliente.getCpf());
-			System.out.println("Idade: " + cliente.getIdade());
-			System.out.println("Sexo: " + cliente.getSexo());
-			System.out.println("Veiculos: " + cliente.getVeiculos().size());
+			boolean run = true;
 			
-			
-			
+			while (run) {
+				System.out.println("Selecione um atributo para atualizar.");
+				System.out.println("Nome: " + cliente.getNome());
+				System.out.println("CPF: " + cliente.getCpf());
+				System.out.println("Idade: " + cliente.getIdade());
+				System.out.println("Sexo: " + cliente.getSexo());
+				System.out.println("Veiculos: " + cliente.getVeiculos().size());
+				System.out.println();
+				System.out.println("Selecione um atributo:");
+				System.out.println("1 - Nome;");
+				System.out.println("2 - Idade;");
+				System.out.println("3 - Sexo");
+				System.out.println("Digite 4 para salvar;");
+				System.out.println("Digite 0 para cancelar.");
+				System.out.print("> ");
+				
+				int opcao = Integer.parseInt(reader.readLine());
+				
+				switch (opcao) {
+				case 1:
+					System.out.println("Digite o nome:");
+					String nome = reader.readLine();
+					
+					cliente.setNome(nome);
+					break;
+				case 2:
+					System.out.println("Digite a Idade:");
+					int idade = Integer.parseInt(reader.readLine());
+					
+					cliente.setIdade(idade);
+					break;
+				case 3:
+					System.out.println("Digite o sexo:");
+					char sexo = reader.readLine().charAt(0);
+					
+					cliente.setSexo(sexo);
+					break;
+				case 4:
+					service.update(cliente);
+				case 0:
+					run = false;
+					break;
+				default:
+					System.out.println("Opção inválida...");
+				}
+			}
 		} catch (ObjectNotFoundException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
+	}
+	
+	public void deletarCliente(BufferedReader reader) throws IOException {
+		System.out.println(":.:.:.: Deletar cliente :.:.:.:");
+		System.out.println();
+		System.out.println("Digite o CPF do cliente:");
+		String cpf = reader.readLine();
+		
+		try {
+			Cliente cliente = service.findByCpf(cpf);
+			service.delete(cliente);
+		} catch (ObjectNotFoundException e ) {
 			System.out.println("Erro: " + e.getMessage());
 		}
 	}

@@ -16,6 +16,37 @@ public class VeiculoManager {
 	private IVeiculoService veiculoService = new VeiculoServiceProvider().provide();
 	private IClienteService clienteService = new ClienteServiceProvider().provide();
 	
+	public void listarVeiculos() {
+		System.out.println(":.:.:.: Listando os veiculos :.:.:.:");
+		System.out.println();
+		
+		veiculoService.findAll()
+				.forEach(veiculo -> {
+					System.out.println("ID: " + veiculo.getId());
+					System.out.println("Placa: " + veiculo.getPlaca());
+					System.out.println("Ano: " + veiculo.getAno());
+					System.out.println("Cor: " + veiculo.getCor());
+					System.out.println("Chassi: " + veiculo.getChassi());
+					System.out.println("Tipo: " + veiculo.getTipo());
+				});
+		
+		System.out.println("---------------------------------");
+	}
+
+	public void detalhesDoVeiculo(BufferedReader reader) throws IOException {
+		System.out.println(":.:.:.: Detalhes do veículo :.:.:.:");
+		System.out.println();
+		
+		System.out.println("Digite o ID do veículo:");
+		long id = Long.parseLong(reader.readLine());
+		
+		try {
+			Veiculo veiculo = veiculoService.findById(id);
+		} catch (ObjectNotFoundException e) {
+			System.out.println("Veiculo não encontrado");
+		}
+	}
+	
 	public void adicionarVeiculo(BufferedReader reader) throws IOException {
 		System.out.println(":.:.: Adicionar veiculo :.:.:");
 		System.out.println("Digite o cpf do cliente:");
